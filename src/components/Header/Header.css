@@ -1,0 +1,30 @@
+.header {
+	padding: 15px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+    align-items: center;
+	background: var(--bg-gradient);
+    color: var(--main-text-color);
+    gap: 16px;
+}
+
+.header__logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header__logo-img {
+	width: 30px;
+    aspect-ratio: 1;
+}
+
+.header__logo-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.header__p {
+    font-size: 0.75rem;
+}
