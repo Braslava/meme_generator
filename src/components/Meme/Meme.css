@@ -1,7 +1,9 @@
 .meme {
+	margin: 0 auto;
 	display: grid;
 	justify-items: center;
     padding: 30px 20px;
+	max-width: 520px;
 }
 
 .button {
@@ -23,7 +25,7 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 20px;
-	padding: 20px 10px;
+	padding: 20px 10px 35px;
 }
 
 .meme__form input {
@@ -32,6 +34,12 @@
 	border: 1px solid var(--border-color);
 	font: inherit;
     min-width: 100px;
+}
+
+.meme__img {
+	width: 100%;
+	max-width: 500px;
+	justify-self: center;
 }
 
 @media only screen and (max-width: 400px) {
