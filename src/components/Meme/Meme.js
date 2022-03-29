@@ -1,26 +1,32 @@
 import './Meme.css';
-import memesData from '../../memesData';
 import React from 'react';
 
 function Meme() {
 	const [meme, setMeme] = React.useState({
 		topText: '',
 		bottomText: '',
-		randomImage: 'http://i.imgflip.com/1bij.jpg',
-		altText: '',
+		randomImage: 'https://i.imgflip.com/2hgfw.jpg',
+		altText: 'Scared cat',
 	});
 
-	const [allMemeImages, setAllMemeImages] = React.useState(memesData);
+	const [allMemes, setAllMemes] = React.useState({});
+
+	React.useEffect(() => {
+		console.log('effect ran');
+		fetch(`https://api.imgflip.com/get_memes`)
+			.then((res) => res.json())
+			.then((data) => setAllMemes(data.data.memes));
+		//.catch(err => alert(err));
+	}, []);
 
 	function handleSubmit(e) {
 		e.preventDefault();
 		const randomIndex = Math.floor(Math.random() * 100);
-		const memesArray = allMemeImages.data.memes;
 
 		setMeme((prevState) => ({
 			...prevState,
-			randomImage: memesArray[randomIndex].url,
-			altText: memesArray[randomIndex].name,
+			randomImage: allMemes[randomIndex].url,
+			altText: allMemes[randomIndex].name,
 		}));
 	}
 
@@ -41,7 +47,7 @@ function Meme() {
 					id="topText"
 					type="text"
 					name="topText"
-					placeholder="Enter the first line"
+					placeholder="Top line"
 					onChange={handleChange}
 					value={meme.topText}
 				></input>
@@ -51,7 +57,7 @@ function Meme() {
 					id="bottomText"
 					type="text"
 					name="bottomText"
-					placeholder="Enter the second line"
+					placeholder="Bottom line"
 					onChange={handleChange}
 					value={meme.bottomText}
 				></input>
