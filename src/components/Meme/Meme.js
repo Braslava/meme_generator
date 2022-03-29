@@ -9,7 +9,7 @@ function Meme() {
 		altText: 'Scared cat',
 	});
 
-	const [allMemes, setAllMemes] = React.useState({});
+	const [allMemes, setAllMemes] = React.useState([]);
 
 	React.useEffect(() => {
 		console.log('effect ran');
@@ -21,7 +21,7 @@ function Meme() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		const randomIndex = Math.floor(Math.random() * 100);
+		const randomIndex = Math.floor(Math.random() * allMemes.length);
 
 		setMeme((prevState) => ({
 			...prevState,
@@ -32,7 +32,7 @@ function Meme() {
 
 	function handleChange(event) {
 		const { name, value } = event.target;
-		console.log(name, value);
+		// console.log(name, value);
 		setMeme((prevState) => ({
 			...prevState,
 			[name]: value,
