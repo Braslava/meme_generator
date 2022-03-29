@@ -11,12 +11,21 @@ function Meme() {
 
 	const [allMemes, setAllMemes] = React.useState([]);
 
+	// React.useEffect(() => {
+	// 	console.log('effect ran');
+	// 	fetch(`https://api.imgflip.com/get_memes`)
+	// 		.then((res) => res.json())
+	// 		.then((data) => setAllMemes(data.data.memes));
+	// 	//.catch(err => alert(err));
+	// }, []);
+
 	React.useEffect(() => {
-		console.log('effect ran');
-		fetch(`https://api.imgflip.com/get_memes`)
-			.then((res) => res.json())
-			.then((data) => setAllMemes(data.data.memes));
-		//.catch(err => alert(err));
+		async function getMemes() {
+			const res = await fetch(`https://api.imgflip.com/get_memes`);
+			const data = await res.json();
+			setAllMemes(data.data.memes);
+		}
+		getMemes();
 	}, []);
 
 	function handleSubmit(e) {
